@@ -1,0 +1,84 @@
+PROGRAM10.MENU DRIVEN ALL OPERATIONS
+
+#include <iostream>
+using namespace std;
+
+#define SIZE 5
+
+int stack[SIZE];
+int top = -1;
+
+void push() {
+    if (top == SIZE - 1) {
+        cout << "Stack Overflow" << endl;
+    } else {
+        int value;
+        cout << "Enter value: ";
+        cin >> value;
+        stack[++top] = value;
+        cout << "Inserted" << endl;
+    }
+}
+
+void pop() {
+    if (top == -1) {
+        cout << "Stack Underflow" << endl;
+    } else {
+        cout << "Deleted: " << stack[top--] << endl;
+    }
+}
+
+void update() {
+    if (top == -1) {
+        cout << "Stack is empty" << endl;
+        return;
+    }
+    int pos, value;
+    cout << "Enter position from top (1 = top): ";
+    cin >> pos;
+    if (pos < 1 || pos > top + 1) {
+        cout << "Invalid position" << endl;
+        return;
+    }
+    cout << "Enter new value: ";
+    cin >> value;
+    stack[top - pos + 1] = value;
+    cout << "Updated" << endl;
+}
+
+void display() {
+    if (top == -1) {
+        cout << "Stack is empty" << endl;
+    } else {
+        cout << "Top -> ";
+        for (int i = top; i >= 0; i--)
+            cout << stack[i] << " ";
+        cout << endl;
+    }
+}
+
+int main() {
+    int choice;
+    do {
+        cout << "\n--- STACK MENU ---" << endl;
+        cout << "1. Push (Insert)" << endl;
+        cout << "2. Pop (Delete)" << endl;
+        cout << "3. Update" << endl;
+        cout << "4. Display" << endl;
+        cout << "5. Exit" << endl;
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: push(); break;
+            case 2: pop(); break;
+            case 3: update(); break;
+            case 4: display(); break;
+            case 5: cout << "Exiting..." << endl; break;
+            default: cout << "Invalid choice" << endl;
+        }
+    } while (choice != 5);
+
+    return 0;
+}
+
