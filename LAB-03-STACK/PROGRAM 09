@@ -1,0 +1,41 @@
+                                                                         PROGRAM09.UPDATE AN ARRAY
+#include <iostream>
+using namespace std;
+
+#define SIZE 5
+
+int stack[SIZE];
+int top = -1;
+
+void push(int value) {
+    if (top == SIZE - 1)
+        cout << "Stack Overflow" << endl;
+    else
+        stack[++top] = value;
+}
+
+void updateTop(int newValue) {
+    if (top == -1) {
+        cout << "Stack is empty, cannot update" << endl;
+    } else {
+        cout << "Top updated: " << stack[top] << " -> " << newValue << endl;
+        stack[top] = newValue;
+    }
+}
+
+void display() {
+    for (int i = top; i >= 0; i--)
+        cout << stack[i] << " ";
+    cout << endl;
+}
+int main() {
+    push(5);
+    push(15);
+    push(25);
+   cout << "Before update: ";
+    display();
+   updateTop(99);
+   cout << "After update: ";
+    display();
+    return 0;
+}
